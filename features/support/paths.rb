@@ -17,6 +17,11 @@ module NavigationHelpers
       '/'
     when /^the new article page$/
       '/admin/content/new'
+    when /^the edit page of the article entitled "(.+)"$/
+      begin
+        article = Article.find_by_title $1
+        %Q{/articles/#{article.id}/edit}
+      end
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
