@@ -8,9 +8,13 @@ Feature: Merge Articles
   Given an admin "overlord" with password "obeyme" exists
   And a contributor "rubyrocks" with password "railsrulez" exists
 
+  And user "rubyrocks" wrote articles:
+  | title 	       | body					|
+  | Setting up Rails   | Follow these steps to get started	|
+
   Scenario: Non admin edits article
-    Given I am logged in as non admin
-    When I am on the edit page of the article entitled "Setting up Rails"
+    Given I am logged in as "rubyrocks" with password "railsrulez"
+    When I go to the edit page of the article entitled "Setting up Rails"
     Then I should not see "Merge Articles"
   
   Scenario: Merge successful
