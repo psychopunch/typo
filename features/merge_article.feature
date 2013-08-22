@@ -5,7 +5,8 @@ Feature: Merge Articles
 
   Background: article related data have been created
 
-  Given an admin "overlord" with password "obeyme" exists
+  Given the blog is set up
+  And an admin "overlord" with password "obeyme" exists
   And a contributor "rubyrocks" with password "railsrulez" exists
 
   And user "rubyrocks" wrote articles:
