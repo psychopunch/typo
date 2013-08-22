@@ -3,17 +3,10 @@ Feature: Merge Articles
   In order to organize contents that pertain to same topic
   I want to merge articles
 
-  Background: the data have been added to the database
+  Background: article related data have been created
 
-  Given the following users exist:
-  | login   	    | profile_id |
-  | nonadmin	    | 2		 |
-  | admin	    | 1		 |
-
-  And the following profiles exist:
-  | id	    | label	    |
-  | 1	    | admin	    |
-  | 2	    | contributor   |
+  Given an admin "overlord" with password "obeyme" exists
+  And a contributor "rubyrocks" with password "railsrulez" exists
 
   Scenario: Non admin edits article
     Given I am logged in as non admin
