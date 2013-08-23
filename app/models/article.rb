@@ -99,7 +99,6 @@ class Article < Content
     article.comments.each do |comment|
       self.comments << comment
     end
-    article.comments.delete
   end
   
   class << self

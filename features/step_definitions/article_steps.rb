@@ -6,10 +6,11 @@ Given /user "(.+)" wrote articles/ do |user, contents|
   author.save!
 end
 
-And /"(.+)" commented "(.+)" on "(.+)"/ do |user, message, article|
+And /"(.+)" commented "(.+)" on "(.+)"/ do |login, message, article|
   article = Article.find_by_title article
-  user = User.find_by_login user
-  article.comments.build body: message, user: user
+  user = User.find_by_login login
+  article.comments.build author: login, body: message, user: user
+  article.save!
 end
 
 And /I fill in "(.+)" with id of article "(.+)"/ do |input_field, article_title|
@@ -24,5 +25,5 @@ end
 
 And /article "(.+)" should have the comments/ do |title|
   article = Article.find_by_title title
-  article.comments.size.should eql Comment.find(:all).length
+  article.comments.size.should eql Comment.find(:all).size
 end
