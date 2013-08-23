@@ -21,7 +21,7 @@ Feature: Merge Articles
   Scenario: Non admin edits article
     Given I am logged in as "rubyrocks" with password "railsrulez"
     When I go to the edit page of the article entitled "Setting up Rails"
-    Then I should not see "Merge Articles"
+    Then I should not see "Article ID"
   
   Scenario: Merge successful
     Given I am logged in as "overlord" with password "obeyme"
