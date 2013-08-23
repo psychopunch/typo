@@ -29,6 +29,6 @@ Feature: Merge Articles
     And I fill in "merge_with" with id of article "Rails Quickstart"
     And I press "Merge"
     Then I should be on the edit page of the article entitled "Setting up Rails"
-    And a merged article entitled "Setting up Rails" should be created
+    And I should see "This is a great guide for beginners"
 
     
