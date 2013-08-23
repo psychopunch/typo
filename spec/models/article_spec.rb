@@ -663,6 +663,9 @@ describe Article do
         comments_pool = @article.comments + @similar_article.comments
         @article.merge @similar_article
         @article.comments.should eql comments_pool
+        @article.comments.each do |comment|
+          comment.article_id.should eql @article.id
+        end
       end
     end
   end

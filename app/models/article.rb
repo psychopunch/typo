@@ -97,7 +97,6 @@ class Article < Content
   def merge(article)
     self.body = %Q{#{self.body}\n#{article.body}}
     article.comments.each do |comment|
-      comment.article_id = self.id
       self.comments << comment
     end
     article.comments.delete
