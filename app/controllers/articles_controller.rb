@@ -105,6 +105,10 @@ class ArticlesController < ContentController
   end
 
   def merge
+    article = Article.find_by_id params[:id].to_i
+    similar_article = Article.find_by_id params[:merge_with].to_i
+    merged_article = article.merge similar_article
+    merged_article.save!
     redirect_to edit_article_path params[:id]
   end
 
