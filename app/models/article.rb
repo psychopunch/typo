@@ -97,6 +97,7 @@ class Article < Content
   def merge(article)
     self.body = %Q{#{self.body}\n#{article.body}}
     article.comments.each do |comment|
+      comment.article = self
       self.comments << comment
     end
   end
