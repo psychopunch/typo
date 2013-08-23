@@ -113,6 +113,7 @@ Rails.application.routes.draw do
   end
 
   get '/articles/:id/edit(.:format)', to: 'articles#edit', as: 'edit_article'
+  put '/articles/:id/merge', to: 'articles#merge', as: 'merge_article'
 
   # default
   root :to  => 'articles#index', :format => false

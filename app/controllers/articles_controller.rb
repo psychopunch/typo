@@ -104,6 +104,9 @@ class ArticlesController < ContentController
     @user = User.find_by_id session[:user_id]
   end
 
+  def merge
+    redirect_to edit_article_path params[:id]
+  end
 
   ### Deprecated Actions ###
 

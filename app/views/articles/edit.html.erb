@@ -1,8 +1,8 @@
 <% if @user.admin? %>
-<form action="#">
-  <label for="article_id">Article ID</label>
-  <input type="text" name="merge_with" />
-  <input type="submit" name="merge" value="Merge" />
-</form>
+  <%= form_tag merge_article_path, method: :put do %>
+    <label for="article_id">Article ID</label>
+    <input type="text" name="merge_with" />
+    <input type="submit" name="merge" value="Merge" />
+  <% end  %>
 <% end  %>
 
