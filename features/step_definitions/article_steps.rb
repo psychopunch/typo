@@ -10,3 +10,8 @@ And /I fill in "(.+)" with id of article "(.+)"/ do |input_field, article_title|
   article = Article.find_by_title article_title
   step %Q{I fill in "#{input_field}" with "#{article.id}"}
 end
+
+And /there should be only one "(.+)" article/ do |title|
+  articles = Article.where title: title
+  articles.length.should == 1
+end

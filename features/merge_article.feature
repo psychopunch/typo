@@ -30,5 +30,6 @@ Feature: Merge Articles
     And I press "Merge"
     Then I should be on the edit page of the article entitled "Setting up Rails"
     And I should see "This is a great guide for beginners"
+    And there should be only one "Setting up Rails" article
 
     
