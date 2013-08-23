@@ -8,10 +8,15 @@ Feature: Merge Articles
   Given the blog is set up
   And an admin "overlord" with password "obeyme" exists
   And a contributor "rubyrocks" with password "railsrulez" exists
+  And a contributor "pseudonym" with password "iwritethings" exists
 
   And user "rubyrocks" wrote articles:
   | title 	       | body					|
   | Setting up Rails   | Follow these steps to get started	|
+
+  And user "pseudonym" wrote articles:
+  | title 	       | body					|
+  | Rails Quickstart   | This is a great guide for beginners	|
 
   Scenario: Non admin edits article
     Given I am logged in as "rubyrocks" with password "railsrulez"
@@ -19,9 +24,9 @@ Feature: Merge Articles
     Then I should not see "Merge Articles"
   
   Scenario: Merge successful
-    Given I am logged in as an admin
+    Given I am logged in as "overlord" with password "obeyme"
     And I am on the edit page of the article entitled "Setting up Rails"
-    And I fill in "Article ID" with "3"
+    And I fill in "merge_with" with id of article "Rails Quickstart"
     And I press "Merge"
     Then the article "Setting up Rails" should be merged with "Rails Quickstart"
 

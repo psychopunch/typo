@@ -5,3 +5,8 @@ Given /user "(.+)" wrote articles/ do |user, contents|
   end
   author.save!
 end
+
+And /I fill in "(.+)" with id of article "(.+)"/ do |input_field, article_title|
+  article = Article.find_by_title article_title
+  step %Q{I fill in "#{input_field}" with "#{article.id}"}
+end
