@@ -634,13 +634,22 @@ describe Article do
   describe "#merge" do
     context "merges the article with another" do
       before :each do
-        @article = Article.new title: "My Article", body: "This is my article."
-        @similar_article = Article.new title: "Similar Article", body: "This is an article similar to mine."
+        @article = Article.new title: "My Article", body: "This is my article.", author: "me"
+        @article.comments.build title: "I like this", body: "I like your article"
+        @similar_article = Article.new title: "Similar Article", body: "This is an article similar to mine.", author: "someone else"
+        @similar_article.comments.build title: "I like this too", body: "I like this article to like the other article"
       end
 
       it "preserves title" do
+        original_title = @article.title
         @article.merge @similar_article
-        @article.title.should eql @article.title
+        @article.title.should eql original_title
+      end
+
+      it "preserves author" do
+        original_author = @article.author
+        @article.merge @similar_article
+        @article.author.should eql original_author
       end
 
       it "joins article body" do
@@ -648,6 +657,12 @@ describe Article do
         @article.merge @similar_article
         @article.body.should include original_body
         @article.body.should include @similar_article.body
+      end
+
+      it "joins comments" do
+        comments_pool = @article.comments + @similar_article.comments
+        @article.merge @similar_article
+        @article.comments.should eql comments_pool
       end
     end
   end
