@@ -1,4 +1,5 @@
 <% if @user.admin? %>
+  <h3>Merge Articles</h3>
   <%= form_tag merge_article_path, method: :put do %>
     <label for="article_id">Article ID</label>
     <input type="text" name="merge_with" />
