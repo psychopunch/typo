@@ -11,7 +11,7 @@ And /I fill in "(.+)" with id of article "(.+)"/ do |input_field, article_title|
   step %Q{I fill in "#{input_field}" with "#{article.id}"}
 end
 
-And /there should be only one "(.+)" article/ do |title|
+And /article "(.+)" should be deleted/ do |title|
   articles = Article.where title: title
-  articles.length.should == 1
+  articles.should be_empty
 end

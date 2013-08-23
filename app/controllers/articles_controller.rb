@@ -109,6 +109,7 @@ class ArticlesController < ContentController
     similar_article = Article.find_by_id params[:merge_with].to_i
     article.merge similar_article
     article.save!
+    similar_article.destroy
     redirect_to "/admin/content/edit/#{params[:id]}"
   end
 
