@@ -641,25 +641,28 @@ describe Article do
       end
 
       it "preserves title" do
-        merge = @article.merge @similar_article
-        merge.title.should eql @article.title
+        original_title = @article.title
+        @article.merge @similar_article
+        @article.title.should eql original_title
       end
 
       it "preserves author" do
-        merge = @article.merge @similar_article
-        merge.author.should eql @article.author
+        original_author = @article.author
+        @article.merge @similar_article
+        @article.author.should eql original_author
       end
 
       it "joins article body" do
-        merge = @article.merge @similar_article
-        merge.body.should include @article.body
-        merge.body.should include @similar_article.body
+        original_body = @article.body
+        @article.merge @similar_article
+        @article.body.should include original_body
+        @article.body.should include @similar_article.body
       end
 
       it "joins comments" do
         comments_pool = @article.comments + @similar_article.comments
-        merge = @article.merge @similar_article
-        merge.comments.should eql comments_pool
+        @article.merge @similar_article
+        @article.comments.should eql comments_pool
       end
     end
   end

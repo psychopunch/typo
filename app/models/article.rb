@@ -95,10 +95,8 @@ class Article < Content
   include Article::States
 
   def merge(article)
-    merged = Article.new title: self.title, author: self.author
-    merged.body = %Q{#{self.body}\n#{article.body}}
-    merged.comments = self.comments + article.comments
-    merged
+    self.body = %Q{#{self.body}\n#{article.body}}
+    self.comments += article.comments
   end
   
   class << self
