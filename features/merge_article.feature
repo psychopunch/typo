@@ -18,6 +18,9 @@ Feature: Merge Articles
   | title 	       | body					|
   | Rails Quickstart   | This is a great guide for beginners	|
 
+  And "pseudonym" commented "this is coool" on "Setting up Rails"
+  And "rubyrocks" commented "this is cool too" on "Rails Quickstart"
+
   Scenario: Non admin edits article
     Given I am logged in as "rubyrocks" with password "railsrulez"
     When I go to the edit page of the article entitled "Setting up Rails"
@@ -31,5 +34,6 @@ Feature: Merge Articles
     Then I should be on the edit page of the article entitled "Setting up Rails"
     And I should see "This is a great guide for beginners"
     And article "Rails Quickstart" should be deleted
+    And article "Setting up Rails" should have the comments
 
     
