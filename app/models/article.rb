@@ -94,6 +94,10 @@ class Article < Content
 
   include Article::States
 
+  def merge(article)
+    self.body = %Q{#{self.body}\n#{article.body}}
+  end
+  
   class << self
     def last_draft(article_id)
       article = Article.find(article_id)

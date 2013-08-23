@@ -630,5 +630,26 @@ describe Article do
     end
 
   end
+
+  describe "#merge" do
+    context "merges the article with another" do
+      before :each do
+        @article = Article.new title: "My Article", body: "This is my article."
+        @similar_article = Article.new title: "Similar Article", body: "This is an article similar to mine."
+      end
+
+      it "preserves title" do
+        @article.merge @similar_article
+        @article.title.should eql @article.title
+      end
+
+      it "joins article body" do
+        original_body = @article.body
+        @article.merge @similar_article
+        @article.body.should include original_body
+        @article.body.should include @similar_article.body
+      end
+    end
+  end
 end
 
