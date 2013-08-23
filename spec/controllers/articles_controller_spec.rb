@@ -726,12 +726,4 @@ describe ArticlesController, "assigned keywords" do
     get 'index'
     assigns(:keywords).should == "typo, is, amazing"
   end
-
-  it "shows the edit page to user" do
-    session[:user_id] = 7
-    test_user = stub_model(User, id: 7)
-    User.should_receive(:find_by_id).with(7).and_return(test_user)
-    get :edit, id: 77
-    assigns(:user).should == test_user
-  end
 end

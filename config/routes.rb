@@ -112,7 +112,6 @@ Rails.application.routes.draw do
     match "/admin/#{i}(/:action(/:id))", :to => "admin/#{i}", :action => nil, :id => nil, :format => false
   end
 
-  get '/articles/:id/edit(.:format)', to: 'articles#edit', as: 'edit_article'
   put '/articles/:id/merge', to: 'articles#merge', as: 'merge_article'
 
   # default

@@ -20,7 +20,7 @@ module NavigationHelpers
     when /^the edit page of the article entitled "(.+)"$/
       begin
         article = Article.find_by_title $1
-        %Q{/articles/#{article.id}/edit}
+        %Q{/admin/content/edit/#{article.id}}
       end
 
     # Add more mappings here.

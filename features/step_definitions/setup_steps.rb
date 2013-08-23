@@ -1,6 +1,6 @@
 Given /(?:|a|an) (.+) "(.+)" with password "(.+)" exists/ do |profile, login, password|
   profile = Profile.find_by_label(profile) || Profile.create(label: profile)
-  User.create(login: login, password: password, email: "#{login}@email.com", profile: profile)
+  User.create! login: login, password: password, email: "#{login}@semail.com", profile: profile, state: "active"
 end
   
 Given /^I am logged in as "(.+)" with password "(.+)"$/ do |user_name, password|

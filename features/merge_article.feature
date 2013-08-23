@@ -7,11 +7,11 @@ Feature: Merge Articles
 
   Given the blog is set up
   And an admin "overlord" with password "obeyme" exists
-  And a contributor "rubyrocks" with password "railsrulez" exists
-  And a contributor "pseudonym" with password "iwritethings" exists
+  And a publisher "rubyrocks" with password "railsrulez" exists
+  And a publisher "pseudonym" with password "iwritethings" exists
 
   And user "rubyrocks" wrote articles:
-  | title 	       | body					|
+  | title	       | body					|
   | Setting up Rails   | Follow these steps to get started	|
 
   And user "pseudonym" wrote articles:
