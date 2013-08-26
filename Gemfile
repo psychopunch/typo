@@ -24,6 +24,7 @@ group :production do
 end
 
 source 'https://rubygems.org'
+#source 'http://rubygems.org'
 ruby "1.9.2"
 
 gem 'thin'
@@ -57,5 +58,6 @@ group :development, :test do
   gem 'cucumber-rails-training-wheels'
   gem 'database_cleaner'
   gem 'capybara'
-  gem 'spork', '~> 1.0rc'
+  gem 'spork-rails'
+  gem 'watchr'
 end
