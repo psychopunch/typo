@@ -109,13 +109,16 @@ class ArticlesController < ContentController
     article = Article.find_by_id article_id
     similar_article = Article.find_by_id merge_id
     article.merge similar_article
-    article.comments.each do |comment|
-      comment.save!
-    end
-    article.save!
-    similar_article = Article.find_by_id merge_id
-    similar_article.destroy
+    apply_merge article, similar_article
     redirect_to "/admin/content/edit/#{params[:id]}"
+  end
+
+  #private
+  def apply_merge(merged_to, merged_with)
+    merged_to.comments.each {|comment| comment.save!}
+    merged_to.save!
+    merged_with = Article.find_by_id merged_with.id
+    merged_with.destroy
   end
 
   ### Deprecated Actions ###
@@ -297,4 +300,6 @@ class ArticlesController < ContentController
       # TODO :Check in request_article type of DATA made in next step
     end
   end
+
+  private :apply_merge
 end

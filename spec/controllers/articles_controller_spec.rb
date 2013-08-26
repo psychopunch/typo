@@ -225,6 +225,7 @@ describe ArticlesController do
       article.should_receive(:merge).with(merge_article)
       comment = mock('Comment')
       article.stub(:comments).and_return [comment]
+      merge_article.stub(:id).and_return 77
       comment.should_receive :save!
       article.should_receive :save!
       merge_article.should_receive :destroy
