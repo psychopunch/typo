@@ -217,6 +217,21 @@ describe ArticlesController do
     end
   end
 
+  describe '#merge action' do
+    it 'merges an article to another article, after which destroys the other' do
+      article, merge_article = mock('Article'), mock('Article')
+      Article.stub(:find_by_id).with(7).and_return article
+      Article.stub(:find_by_id).with(77).and_return merge_article
+      article.should_receive(:merge).with(merge_article)
+      comment = mock('Comment')
+      article.stub(:comments).and_return [comment]
+      comment.should_receive :save!
+      article.should_receive :save!
+      merge_article.should_receive :destroy
+      put :merge, id: 7, merge_with: 77
+      response.should redirect_to %{/admin/content/edit/7}
+    end
+  end
 end
 
 describe ArticlesController, "nosettings" do
@@ -229,7 +244,6 @@ describe ArticlesController, "nosettings" do
     get 'index'
     response.should redirect_to(:controller => 'setup', :action => 'index')
   end
-
 end
 
 describe ArticlesController, "nousers" do
