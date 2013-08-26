@@ -24,6 +24,11 @@ module NavigationHelpers
         article = Article.find_by_title $1
         %Q{/admin/content/edit/#{article.id}}
       end
+    when /^the edit category page for "(.+)"$/
+      begin
+        category = Category.find_by_name $1
+        %{/admin/categories/edit/#{category.id}}
+      end
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
