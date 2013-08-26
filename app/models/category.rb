@@ -73,6 +73,12 @@ class Category < ActiveRecord::Base
     permalink
   end
 
+  def self.get_or_build id = nil
+    category = Category.find(id) if id
+    category = Category.new unless category
+    category
+  end
+  
   protected
 
   before_save :set_permalink
@@ -81,10 +87,7 @@ class Category < ActiveRecord::Base
     self.permalink = self.name.to_permalink if self.permalink.nil? or self.permalink.empty?
   end
 
-  def self.get_or_build id = nil
-    category = Category.find(id) if id
-    category = Category.new unless category
-  end
+  
   
   validates_presence_of :name
   validates_uniqueness_of :name, :on => :create

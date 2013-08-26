@@ -46,4 +46,16 @@ describe Category do
   end
 end
 
+describe Category, "::get_or_build" do
+  it "returns an existent category" do
+    Category.stub(:find).with(7).and_return Factory(:category, id: 7)
+    category = Category.get_or_build 7
+    category.should_not be_nil
+    category.id.should eql 7
+  end
 
+  it "returns a new category if no id is specified" do
+    category = Category.get_or_build
+    category.should_not be_nil
+  end
+end
