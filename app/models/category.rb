@@ -81,6 +81,11 @@ class Category < ActiveRecord::Base
     self.permalink = self.name.to_permalink if self.permalink.nil? or self.permalink.empty?
   end
 
+  def self.get_or_build id = nil
+    category = Category.find(id) if id
+    category = Category.new unless category
+  end
+  
   validates_presence_of :name
   validates_uniqueness_of :name, :on => :create
 end
