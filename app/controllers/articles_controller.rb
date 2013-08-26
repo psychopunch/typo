@@ -105,14 +105,15 @@ class ArticlesController < ContentController
   end
 
   def merge
-    article = Article.find_by_id params[:id]
-    similar_article = Article.find_by_id params[:merge_with]
+    article_id, merge_id = params[:id], params[:merge_with]
+    article = Article.find_by_id article_id
+    similar_article = Article.find_by_id merge_id
     article.merge similar_article
     article.comments.each do |comment|
       comment.save!
     end
     article.save!
-    similar_article = Article.find_by_id params[:merge_with]
+    similar_article = Article.find_by_id merge_id
     similar_article.destroy
     redirect_to "/admin/content/edit/#{params[:id]}"
   end
