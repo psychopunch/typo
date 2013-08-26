@@ -17,6 +17,8 @@ module NavigationHelpers
       '/'
     when /^the new article page$/
       '/admin/content/new'
+    when /^the create new category page$/
+      '/admin/categories/new'
     when /^the edit page of the article entitled "(.+)"$/
       begin
         article = Article.find_by_title $1
