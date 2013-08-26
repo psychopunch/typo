@@ -8,6 +8,7 @@ def run_spec(file)
 end
 
 def run_cuke(file)
+  check file
   puts "Running #{file}"
   system "bundle exec cucumber #{file}"
   puts
