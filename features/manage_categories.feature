@@ -11,4 +11,10 @@ Feature: Manage Categories
 
   Scenario: Create new article
     Given I am on the create new category page
-    Then I should see "Name"
+    And I fill in the following:
+    | Name     	  | sample			|
+    | Keywords	  | sample, test		|
+    | Description | this is sample category	|
+    And I press "Save"
+    Then a new category with name "sample" should be created
+    
